@@ -23,7 +23,10 @@ RUN pip install jupyterlab_latex && \
   jupyter labextension install @jupyterlab/latex
 
 USER root
+ENV DEBIAN_FRONTEND noninteractive
+#ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
+#dpkg-reconfigure --frontend noninteractive tzdata
 
-RUN apt update && apt install -y ssh
+RUN apt update && apt install -y ssh vim awscli
 
 USER $NB_USER
